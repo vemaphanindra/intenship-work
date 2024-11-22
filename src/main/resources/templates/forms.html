@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Forms Page</title>
+  <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f7fa; /* Light background color */
+    }
+
+    .dashboard {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 80%;
+        max-width: 800px;
+    }
+
+    .dashboard h2 {
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        animation: fadeIn 1.5s ease-in;
+    }
+
+    .button-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        justify-items: center;
+    }
+
+    .dashboard button {
+        padding: 15px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 250px;
+    }
+
+    .dashboard button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard button i {
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    /* Specific button color styles */
+    .task-btn { background-color: #673ab7; } /* Purple */
+    .proposal-btn { background-color: #9c27b0; } /* Deep Purple */
+    .feedback-btn { background-color: #ff5722; } /* Deep Orange */
+    .resource-btn { background-color: #009688; } /* Teal */
+    .progress-btn { background-color: #3f51b5; } /* Indigo */
+    .complaint-btn { background-color: #e91e63; } /* Pink */
+
+    .task-btn:hover { background-color: #512da8; }
+    .proposal-btn:hover { background-color: #7b1fa2; }
+    .feedback-btn:hover { background-color: #e64a19; }
+    .resource-btn:hover { background-color: #00796b; }
+    .progress-btn:hover { background-color: #303f9f; }
+    .complaint-btn:hover { background-color: #d81b60; }
+
+    /* Animation for fade-in effect */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+  </style>
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="dashboard">
+  <h2>YOUR ARE USING PROJECT AND TASK MANAGEMENT FORMS </h2>
+  <div class="button-container">
+    <button class="task-btn" onclick="location.href='/task'">
+      <i class="fas fa-tasks"></i> Task Assignment Form
+    </button>
+    <button class="proposal-btn" onclick="location.href='/proposal'">
+      <i class="fas fa-file-alt"></i> Project Proposal Form
+    </button>
+    <button class="feedback-btn" onclick="location.href='/feedback'">
+      <i class="fas fa-comment-dots"></i> Feedback and Issue Tracking Form
+    </button>
+    <button class="resource-btn" onclick="location.href='/resource'">
+      <i class="fas fa-cogs"></i> Resource Allocation Form
+    </button>
+    <button class="progress-btn" onclick="location.href='/progress'">
+      <i class="fas fa-chart-line"></i> Progress Update Form
+    </button>
+    <button class="complaint-btn" onclick="location.href='/complaint'">
+      <i class="fas fa-exclamation-triangle"></i> Complaint Form
+    </button>
+  </div>
+</div>
+</body>
+</html>

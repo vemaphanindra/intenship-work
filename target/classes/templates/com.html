@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Complaint Form</title>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .text-center {
+            color: #333333;
+            font-weight: bold;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .text-center::before, .text-center::after {
+            content: "";
+            height: 3px;
+            width: 50px;
+            background-color: #007bbf;
+            display: inline-block;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .text-center::before {
+            top: -10px;
+        }
+        .text-center::after {
+            bottom: -10px;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #007bbf;
+        }
+        .form-control {
+            border: 2px solid #007bbf;
+            border-radius: 5px;
+            transition: border 0.3s;
+        }
+        .form-control:focus {
+            border: 2px solid #005f87;
+            box-shadow: none;
+        }
+        .btn-primary {
+            background-color: #007bbf;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #005f87;
+            transform: scale(1.05);
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: none;
+        }
+        .alert-success:before {
+            content: "?";
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Complaint Form</h2>
+    <form th:action="@{/submitComplaint}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" name="phone" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="highlight" class="form-label">Highlight Word</label>
+            <input type="text" class="form-control" id="highlight" name="highlight">
+        </div>
+        <div class="mb-3">
+            <label for="complaint" class="form-label">Detailed Complaint</label>
+            <textarea class="form-control" id="complaint" name="complaint" rows="5" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="timeSlot" class="form-label">Time Slot</label>
+            <select class="form-control" id="timeSlot" name="timeSlot">
+                <option value="">Select Time Slot</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Evening">Evening</option>
+                <option value="Night">Night</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="rating" class="form-label">Rating</label>
+            <select class="form-control" id="rating" name="rating">
+                <option value="">Select Rating</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+        <button type="submit" class="btn btn-primary">Submit Complaint</button>
+    </form>
+</div>
+</body>
+</html>

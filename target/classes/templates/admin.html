@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background: linear-gradient(135deg, #74ebd5, #acb6e5);
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+    .container {
+        margin-top: 50px;
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        max-width: 800px;
+    }
+    .form-section, .details-section {
+        margin-bottom: 30px;
+        animation: fadeIn 1s;
+    }
+    .form-section h4, .details-section h4 {
+        margin-bottom: 20px;
+        color: #007bbf;
+        position: relative;
+    }
+    .form-section h4::after, .details-section h4::after {
+        content: "";
+        height: 4px;
+        width: 60px;
+        background: #007bbf;
+        display: block;
+        margin-top: 5px;
+        border-radius: 2px;
+    }
+    .form-group label {
+        color: #007bbf;
+    }
+    .form-control {
+        border: 2px solid #007bbf;
+        border-radius: 5px;
+        transition: border 0.3s, box-shadow 0.3s;
+    }
+    .form-control:focus {
+        border-color: #005f87;
+        box-shadow: 0 0 8px rgba(0, 95, 135, 0.5);
+    }
+    .btn {
+        background-color: #007bbf;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn-primary:hover, .btn-secondary:hover {
+        background-color: #005f87;
+        transform: scale(1.05);
+    }
+    .details-section p {
+        background: #e1f5fe;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .details-section p strong {
+        color: #007bbf;
+    }
+    .text-center {
+        color: #333;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2 class="text-center">Admin Page</h2>
+
+  <!-- Task Search Form -->
+  <div class="form-section">
+    <h4>Search Task</h4>
+    <form action="/getTask" method="post">
+      <div class="form-group">
+        <label for="taskName">Task Name:</label>
+        <input type="text" class="form-control" id="taskName" name="taskName" placeholder="Enter task name">
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Search Task</button>
+    </form>
+  </div>
+
+  <!-- Complaint Search Form -->
+  <div class="form-section">
+    <h4>Search Complaint</h4>
+    <form action="/getComplaint" method="post">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email to get complaint details">
+      </div>
+      <button type="submit" class="btn btn-secondary mt-2">Search Complaint</button>
+    </form>
+  </div>
+
+  <!-- Task Details -->
+  <div class="details-section" th:if="${task != null}">
+    <h4>Task Details</h4>
+    <p><strong>Task Name:</strong> <span th:text="${task.taskName}">Task Name</span></p>
+    <p><strong>Task Description:</strong> <span th:text="${task.taskDescription}">Task Description</span></p>
+    <p><strong>Assignee Name:</strong> <span th:text="${task.assigneeName}">Assignee Name</span></p>
+    <p><strong>Assignee Email:</strong> <span th:text="${task.assigneeEmail}">Assignee Email</span></p>
+    <p><strong>Attachment:</strong> <span th:text="${task.attachment != null ? 'Available' : 'Not Available'}">Attachment</span></p>
+  </div>
+
+  <!-- Complaint Details -->
+  <div class="details-section" th:if="${complaint != null}">
+    <h4>Complaint Details</h4>
+    <p><strong>Name:</strong> <span th:text="${complaint.name}">Name</span></p>
+    <p><strong>Phone:</strong> <span th:text="${complaint.phone}">Phone</span></p>
+    <p><strong>Email:</strong> <span th:text="${complaint.email}">Email</span></p>
+    <p><strong>Highlight:</strong> <span th:text="${complaint.highlight}">Highlight</span></p>
+    <p><strong>Complaint:</strong> <span th:text="${complaint.complaint}">Complaint</span></p>
+    <p><strong>Time Slot:</strong> <span th:text="${complaint.timeSlot}">Time Slot</span></p>
+    <p><strong>Rating:</strong> <span th:text="${complaint.rating}">Rating</span></p>
+  </div>
+
+  <!-- Message -->
+  <div id="message" class="details-section" th:if="${message != null}">
+    <p class="text-danger" th:text="${message}">Message</p>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
